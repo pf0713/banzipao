@@ -1,0 +1,25 @@
+<view class="player-area {{isCurrent ? 'current' : ''}}">
+  <view class="player-info">
+    <view class="avatar">{{player.name ? player.name[0] : '?'}}</view>
+    <view class="meta">
+      <text class="name">{{player.name || '玩家'}}</text>
+      <view class="badge-line">
+        <text wx:if="{{player.isBanker}}" class="badge banker">庄</text>
+        <text wx:if="{{player.isBidder && player.isSuBao}}" class="badge subao">素包</text>
+        <text wx:if="{{player.isBidder && !player.isSuBao}}" class="badge bidder">包</text>
+        <text wx:if="{{player.isAntiBidder}}" class="badge anti">反</text>
+        <text wx:if="{{player.isPartnerToMe || player.isPartnerPublic}}" class="badge partner">友</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 出牌 -->
+  <view class="played-row" wx:if="{{lastPlayedCards.length > 0}}">
+    <playing-card wx:for="{{lastPlayedCards}}" wx:key="id" card="{{item}}" small="{{true}}" />
+  </view>
+
+  <!-- 对手手牌（背面） -->
+  <view class="back-hand" wx:if="{{!showCards && player.handCount > 0}}">
+    <playing-card wx:for="{{player.handCount}}" wx:key="*this" faceDown="{{true}}" small="{{true}}" />
+  </view>
+</view>
