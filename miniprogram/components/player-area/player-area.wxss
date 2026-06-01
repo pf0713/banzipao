@@ -1,0 +1,61 @@
+.player-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6rpx 10rpx;
+  border-radius: 10rpx;
+  background: rgba(255,255,255,0.04);
+  width: 100%;
+  box-sizing: border-box;
+}
+.player-area.current {
+  background: rgba(33,150,243,0.25);
+  border: 1rpx solid #2196f3;
+}
+
+.player-info {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  width: 100%;
+}
+.avatar {
+  width: 40rpx; height: 40rpx;
+  border-radius: 50%;
+  background: #2196f3;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 22rpx; font-weight: bold;
+  flex-shrink: 0;
+}
+.meta {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.name {
+  font-size: 20rpx; color: #c8d8e8;
+  max-width: 130rpx;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.badge-line { display: flex; gap: 3rpx; }
+.badge {
+  padding: 0 6rpx; border-radius: 4rpx;
+  font-size: 15rpx; color: #fff;
+}
+.badge.banker  { background: #e67e22; }
+.badge.bidder  { background: #e74c3c; }
+.badge.subao   { background: #ff6f00; }
+.badge.anti    { background: #9b59b6; }
+.badge.partner { background: #42a5f5; }
+
+.played-row {
+  display: flex;
+  flex-wrap: wrap; justify-content: center;
+  margin-top: 2rpx;
+}
+.back-hand {
+  display: flex;
+  flex-wrap: wrap; justify-content: center;
+  margin-top: 2rpx;
+  gap: 1rpx;
+}
