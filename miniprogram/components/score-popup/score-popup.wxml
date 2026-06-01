@@ -1,0 +1,32 @@
+<view class="popup-mask" wx:if="{{visible}}" catchtouchmove="noop">
+  <view class="popup-content">
+    <!-- 天牌展示 -->
+    <view class="heaven-section" wx:if="{{heavenInfo}}">
+      <view class="heaven-icon">🌟</view>
+      <view class="heaven-title">
+        {{heavenInfo.type === 'gunlong' ? '滚龙天牌！' : '十三烂天牌！'}}
+      </view>
+      <view class="heaven-player">{{players[heavenInfo.seat].name}} 直接获胜</view>
+    </view>
+
+    <view class="result-title">本局结算</view>
+
+    <!-- 积分列表 -->
+    <view class="player-scores">
+      <view class="score-row" wx:for="{{players}}" wx:key="seat">
+        <view class="score-name">{{item.name}}</view>
+        <view class="score-cards">牌{{item.collectedCount}}张</view>
+        <view class="score-detail">本局{{item.score >= 0 ? '+' : ''}}{{item.score + (item.bonus||0)}}</view>
+        <view class="score-value {{item.totalScore >= 0 ? 'positive' : 'negative'}}" wx:if="{{item.totalScore !== undefined}}">
+          累计 {{item.totalScore >= 0 ? '+' : ''}}{{item.totalScore}}
+        </view>
+      </view>
+    </view>
+
+    <!-- 操作按钮 -->
+    <view class="btn-group">
+      <button class="btn btn-continue" bindtap="onContinue">再来一局</button>
+      <button class="btn btn-back" bindtap="onBack">返回首页</button>
+    </view>
+  </view>
+</view>
