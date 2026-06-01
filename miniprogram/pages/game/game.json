@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "板子炮",
+  "usingComponents": {
+    "playing-card": "../../components/playing-card/playing-card",
+    "action-bar": "../../components/action-bar/action-bar",
+    "score-popup": "../../components/score-popup/score-popup"
+  }
+}
