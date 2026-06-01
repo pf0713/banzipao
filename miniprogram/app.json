@@ -1,0 +1,16 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/game/game",
+    "pages/room/room",
+    "pages/result/result",
+    "pages/rules/rules"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#1565c0",
+    "navigationBarTitleText": "遵义板子炮",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#0b1a2e"
+  },
+  "style": "v2"
+}
