@@ -1,0 +1,29 @@
+<view class="card-wrapper {{small ? 'small' : ''}} {{selected ? 'selected' : ''}}" bindtap="onTap">
+  <block wx:if="{{!faceDown && card}}">
+    <view class="card-inner {{isRed ? 'red' : 'black'}}">
+      <!-- 左上角标 -->
+      <view class="corner top-left">
+        <text class="corner-rank">{{card.rank}}</text>
+        <text class="corner-suit">{{suitSymbol}}</text>
+      </view>
+      <!-- 中央主显示 -->
+      <view class="center">
+        <text class="rank">{{card.rank}}</text>
+        <text class="suit">{{suitSymbol}}</text>
+      </view>
+      <!-- 右下角标（倒置） -->
+      <view class="corner bottom-right">
+        <text class="corner-rank">{{card.rank}}</text>
+        <text class="corner-suit">{{suitSymbol}}</text>
+      </view>
+    </view>
+  </block>
+  <block wx:elif="{{faceDown}}">
+    <view class="card-inner face-down">
+      <text class="pattern">🂠</text>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="card-inner empty"></view>
+  </block>
+</view>
