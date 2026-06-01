@@ -1,0 +1,85 @@
+.card-wrapper {
+  display: inline-flex;
+  flex-shrink: 0;
+  margin-left: -38rpx;
+  transition: transform 0.13s ease;
+  position: relative;
+  z-index: 1;
+  vertical-align: bottom;
+}
+.card-wrapper:first-child { margin-left: 0; }
+
+.small { margin-left: -10rpx; }
+.small:first-child { margin-left: 0; }
+
+/* 选中弹起 */
+.card-wrapper.selected {
+  transform: translateY(-44rpx);
+  z-index: 20;
+}
+
+/* 牌面 */
+.card-inner {
+  width: 92rpx;
+  height: 130rpx;
+  background: linear-gradient(175deg, #ffffff 0%, #f0f0f0 100%);
+  border-radius: 10rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3rpx 12rpx rgba(0,0,0,0.4);
+  font-weight: bold;
+  border: 2rpx solid #ccc;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.small .card-inner {
+  width: 36rpx; height: 50rpx;
+  border: 1rpx solid #bbb;
+  border-radius: 4rpx;
+  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.3);
+}
+
+.card-inner.red  { color: #d32f2f; }
+.card-inner.black { color: #212121; }
+
+.card-inner.face-down {
+  background: linear-gradient(135deg, #1976d2, #0d47a1);
+  color: #fff; border-color: #0d47a1;
+}
+.card-inner.empty {
+  background: rgba(255,255,255,0.04);
+  border: 1rpx dashed rgba(255,255,255,0.1);
+}
+
+/* 角标 */
+.corner {
+  position: absolute;
+  display: flex; flex-direction: column; align-items: center;
+  line-height: 1;
+}
+.corner.top-left     { top: 5rpx; left: 6rpx; }
+.corner.bottom-right { bottom: 5rpx; right: 6rpx; transform: rotate(180deg); }
+.corner-rank { font-size: 17rpx; font-weight: bold; }
+.corner-suit { font-size: 14rpx; margin-top: -2rpx; }
+.small .corner { display: none; }
+
+/* 中央 */
+.center { display: flex; flex-direction: column; align-items: center; }
+.rank { font-size: 36rpx; line-height: 1; font-weight: bold; }
+.suit { font-size: 26rpx; line-height: 1; margin-top: 1rpx; }
+.small .rank { font-size: 15rpx; }
+.small .suit { font-size: 13rpx; margin-top: 0; }
+.pattern { font-size: 22rpx; }
+
+/* 选中光效 */
+.card-wrapper.selected .card-inner {
+  border: 4rpx solid #ffc107;
+  box-shadow:
+    0 0 10rpx rgba(255,193,7,0.55),
+    0 0 28rpx rgba(255,193,7,0.22),
+    0 8rpx 20rpx rgba(0,0,0,0.45);
+  background: linear-gradient(175deg, #fffde7 0%, #fff8e1 100%);
+}
