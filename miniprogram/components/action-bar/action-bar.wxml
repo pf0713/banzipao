@@ -1,0 +1,28 @@
+<view class="action-bar" wx:if="{{isMyTurn}}">
+  <view class="selected-info" wx:if="{{selectedCards.length > 0}}">
+    已选 {{selectedCards.length}} 张
+  </view>
+
+  <view class="btn-row">
+    <button class="btn btn-play" bindtap="onPlay" disabled="{{!canPlay}}">
+      出牌
+    </button>
+    <button class="btn btn-pass" bindtap="onPass" disabled="{{!canPass}}">
+      PASS
+    </button>
+    <button class="btn btn-hint" bindtap="onHint">
+      提示
+    </button>
+  </view>
+
+  <!-- 提示展示 -->
+  <view class="hint-cards" wx:if="{{showHint && hintCards.length > 0}}">
+    <text class="hint-label">推荐出牌:</text>
+    <playing-card
+      wx:for="{{hintCards}}"
+      wx:key="id"
+      card="{{item}}"
+      small="{{true}}"
+    />
+  </view>
+</view>
