@@ -1,0 +1,30 @@
+.container { min-height: 100vh; padding: 32rpx; background: #0d2818; }
+
+.title {
+  font-size: 40rpx; font-weight: bold; color: #ffd54f; text-align: center; margin-bottom: 32rpx;
+}
+
+.section { margin-bottom: 20rpx; white-space: pre-line; line-height: 1.8; }
+
+.h2 {
+  font-size: 30rpx; font-weight: bold; color: #fff; margin-bottom: 12rpx;
+  padding-bottom: 8rpx; border-bottom: 1rpx solid rgba(255,255,255,0.1);
+}
+
+text { font-size: 26rpx; color: #ccc; }
+
+.type-list { display: flex; flex-direction: column; gap: 10rpx; }
+
+.type-item {
+  font-size: 24rpx; color: #ccc; padding: 8rpx 12rpx;
+  background: rgba(255,255,255,0.04); border-radius: 8rpx;
+}
+
+.type-item.highlight {
+  background: rgba(255,213,79,0.1); color: #ffd54f; font-weight: bold;
+}
+
+.footer {
+  text-align: center; font-size: 22rpx; color: rgba(255,255,255,0.25);
+  padding: 40rpx 0;
+}
