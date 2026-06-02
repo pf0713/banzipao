@@ -1,0 +1,154 @@
+<view class="game-container">
+  <!-- 顶栏 -->
+  <view class="top-bar">
+    <text class="tp">{{phaseText}}</text>
+    <text class="tr" wx:if="{{lastPlayInfo}}">{{lastPlayInfo}}</text>
+  </view>
+
+  <!-- 对家 (seat 2) -->
+  <view class="player-top">
+    <view class="pt-info {{currentTurn === 2 ? 'active' : ''}}">
+      <text class="pt-name">{{players[2].name}}</text>
+      <text wx:if="{{players[2].isBanker}}" class="tb tb-b">庄</text>
+      <text wx:if="{{players[2].isBidder}}" class="tb tb-bd">包</text>
+      <text wx:if="{{players[2].isAntiBidder}}" class="tb tb-a">反</text>
+    </view>
+    <view class="pt-back">
+      <playing-card faceDown="{{true}}" small="{{true}}" />
+      <text class="pt-num">×{{players[2].handCount}}</text>
+    </view>
+    <view class="pt-play" wx:if="{{players[2]._lastPlayed.length > 0}}">
+      <playing-card wx:for="{{players[2]._lastPlayed}}" wx:key="id" card="{{p}}" small="{{true}}" wx:for-item="p" />
+    </view>
+  </view>
+
+  <!-- 中部：左右对手 + 桌面 -->
+  <view class="mid-row">
+    <!-- 对手3 (左) -->
+    <view class="side-p {{currentTurn === 3 ? 'active' : ''}}">
+      <text class="sp-name">{{players[3].name}}</text>
+      <text wx:if="{{players[3].isBanker}}" class="tb tb-b">庄</text>
+      <text wx:if="{{players[3].isBidder}}" class="tb tb-bd">包</text>
+      <text wx:if="{{players[3].isAntiBidder}}" class="tb tb-a">反</text>
+      <view class="sp-back">
+        <playing-card faceDown="{{true}}" small="{{true}}" />
+        <text class="sp-num">×{{players[3].handCount}}</text>
+      </view>
+      <view class="sp-play" wx:if="{{players[3]._lastPlayed.length > 0}}">
+        <playing-card wx:for="{{players[3]._lastPlayed}}" wx:key="id" card="{{p}}" small="{{true}}" wx:for-item="p" />
+      </view>
+    </view>
+
+    <!-- 桌面中央 -->
+    <view class="table-center">
+      <text class="tc-round">第{{gameRound}}局</text>
+      <text class="tc-info" wx:if="{{lastPlaySeat >= 0}}">{{players[lastPlaySeat].name}} 出了</text>
+      <text class="tc-wait" wx:else>等待出牌</text>
+    </view>
+
+    <!-- 对手1 (右) -->
+    <view class="side-p {{currentTurn === 1 ? 'active' : ''}}">
+      <text class="sp-name">{{players[1].name}}</text>
+      <text wx:if="{{players[1].isBanker}}" class="tb tb-b">庄</text>
+      <text wx:if="{{players[1].isBidder}}" class="tb tb-bd">包</text>
+      <text wx:if="{{players[1].isAntiBidder}}" class="tb tb-a">反</text>
+      <view class="sp-back">
+        <playing-card faceDown="{{true}}" small="{{true}}" />
+        <text class="sp-num">×{{players[1].handCount}}</text>
+      </view>
+      <view class="sp-play" wx:if="{{players[1]._lastPlayed.length > 0}}">
+        <playing-card wx:for="{{players[1]._lastPlayed}}" wx:key="id" card="{{p}}" small="{{true}}" wx:for-item="p" />
+      </view>
+    </view>
+  </view>
+
+  <!-- 我的手牌 -->
+  <view class="hand-area"
+    bindtouchstart="onHandTouchStart"
+    bindtouchmove="onHandTouchMove"
+    bindtouchend="onHandTouchEnd">
+    <view class="hand-fan">
+      <playing-card
+        wx:for="{{myCards}}"
+        wx:key="id"
+        card="{{item}}"
+        selected="{{selectedIds.indexOf(item.id) >= 0}}"
+        bind:cardtap="onCardTap"
+      />
+    </view>
+  </view>
+
+  <!-- 自己信息 -->
+  <view class="self-bar">
+    <text class="sb-name">{{players[0].name}}</text>
+    <text wx:if="{{players[0].isBanker}}" class="tb tb-b">庄</text>
+    <text wx:if="{{players[0].isBidder}}" class="tb tb-bd">包</text>
+    <text wx:if="{{players[0].isAntiBidder}}" class="tb tb-a">反</text>
+    <text class="sb-de">得{{players[0].collectedCount}}张</text>
+  </view>
+
+  <!-- 操作 -->
+  <action-bar
+    canPlay="{{canPlay}}"
+    canPass="{{canPass}}"
+    selectedCards="{{selectedCards}}"
+    isMyTurn="{{isMyTurn}}"
+    phase="{{phase}}"
+    bind:play="onPlay"
+    bind:pass="onPass"
+    bind:hint="onHint"
+  />
+
+  <!-- 弹窗 -->
+  <view class="bid-overlay" wx:if="{{needBid && !needCallCard && !showSuBaoChoice}}">
+    <view class="bid-box">
+      <view class="b-title">请选择</view>
+      <view class="b-sub">
+        <block wx:if="{{bidBtnType === 'antibao'}}">有人包牌了，你要反包吗？</block>
+        <block wx:elif="{{bidBtnType === 'bidder'}}">你要包牌吗？</block>
+        <block wx:else>请选择</block>
+      </view>
+      <view class="b-btns">
+        <button class="bb bao" bindtap="onBidBao" wx:if="{{bidBtnType !== 'antibao'}}">包牌</button>
+        <button class="bb anti" bindtap="onBidAnti" wx:if="{{bidBtnType === 'antibao'}}">反包</button>
+        <button class="bb pass" bindtap="onBidPass">不包</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="bid-overlay" wx:if="{{showSuBaoChoice}}">
+    <view class="bid-box">
+      <view class="b-title">素包选择</view>
+      <view class="b-sub">你的手牌管不起2</view>
+      <view class="b-btns">
+        <button class="bb subao" bindtap="onSuBaoYes">素包翻倍</button>
+        <button class="bb pass" bindtap="onSuBaoNo">普通包牌</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="bid-overlay" wx:if="{{needCallCard}}">
+    <view class="bid-box">
+      <view class="b-title">庄家叫牌</view>
+      <view class="b-sub">你缺{{callRank}}，选花色</view>
+      <view class="call-row">
+        <view class="call-btn {{selectedCallCard.suit === item.suit ? 'on' : ''}}"
+          wx:for="{{callCardOptions}}" wx:key="suit"
+          data-rank="{{item.rank}}" data-suit="{{item.suit}}"
+          bindtap="onSelectCallSuit">
+          <text>{{item.suitName}}{{item.rank}}</text>
+        </view>
+      </view>
+      <button class="bb ok" bindtap="onConfirmCall">确认叫牌</button>
+    </view>
+  </view>
+
+  <score-popup
+    visible="{{showResult}}"
+    players="{{players}}"
+    heavenInfo="{{heavenInfo}}"
+    bind:close="onBackToHome"
+    bind:continue="onContinueGame"
+    bind:back="onBackToHome"
+  />
+</view>
