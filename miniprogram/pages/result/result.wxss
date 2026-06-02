@@ -1,0 +1,26 @@
+.container {
+  min-height: 100vh;
+  padding: 60rpx 40rpx;
+  text-align: center;
+  background: #0d2818;
+}
+
+.result-icon { font-size: 80rpx; margin-bottom: 16rpx; }
+.result-title { font-size: 40rpx; font-weight: bold; color: #ffd54f; margin-bottom: 32rpx; }
+
+.score-card { width: 100%; margin-bottom: 40rpx; }
+.score-card .row {
+  display: flex;
+  justify-content: space-between;
+  padding: 16rpx 0;
+  font-size: 30rpx;
+  color: #e0e0e0;
+  border-bottom: 1rpx solid rgba(255,255,255,0.05);
+}
+
+.green { color: #4caf50; font-weight: bold; }
+.red { color: #f44336; font-weight: bold; }
+
+.btns { display: flex; flex-direction: column; gap: 16rpx; }
+.btn-primary { width: 100%; background: #2d8a4e; color: #fff; border-radius: 14rpx; padding: 24rpx; font-size: 30rpx; border: none; }
+.btn-secondary { width: 100%; background: rgba(255,255,255,0.1); color: #ccc; border-radius: 14rpx; padding: 24rpx; font-size: 30rpx; border: none; }
