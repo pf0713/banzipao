@@ -1,0 +1,44 @@
+<view class="container">
+  <!-- 顶部标题 -->
+  <view class="header">
+    <view class="title">遵义板子炮</view>
+    <view class="subtitle">贵州经典扑克游戏</view>
+  </view>
+
+  <!-- 装饰牌 -->
+  <view class="card-display">
+    <view class="card c1">♠7</view>
+    <view class="card c2">♥A</view>
+    <view class="card c3">♦K</view>
+    <view class="card c4">♣2</view>
+  </view>
+
+  <!-- 模式选择 -->
+  <view class="menu">
+    <button class="menu-btn ai-btn" bindtap="startAIGame">
+      <view class="btn-icon">🤖</view>
+      <view class="btn-text">
+        <view class="btn-title">人机对战</view>
+        <view class="btn-desc">单人对战3个AI</view>
+      </view>
+    </button>
+
+    <button class="menu-btn online-btn" bindtap="goToRoom">
+      <view class="btn-icon">🌐</view>
+      <view class="btn-text">
+        <view class="btn-title">联网对战</view>
+        <view class="btn-desc">4人真人实时对战</view>
+      </view>
+    </button>
+
+    <button class="menu-btn rules-btn" bindtap="goToRules">
+      <view class="btn-icon">📖</view>
+      <view class="btn-text">
+        <view class="btn-title">游戏规则</view>
+        <view class="btn-desc">查看完整玩法说明</view>
+      </view>
+    </button>
+  </view>
+
+  <view class="footer">v1.0 · 贵州特色扑克</view>
+</view>
