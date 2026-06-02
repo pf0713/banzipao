@@ -1,0 +1,49 @@
+<view class="container">
+  <view class="title">联网对战</view>
+
+  <!-- 未在房间中 -->
+  <block wx:if="{{!showCreate}}">
+    <view class="section">
+      <view class="section-title">创建房间</view>
+      <input class="input" placeholder="输入你的昵称" value="{{playerName}}" bindinput="onNameInput" />
+      <button class="btn-primary" bindtap="createRoom">创建房间</button>
+    </view>
+
+    <view class="divider">
+      <text>或者</text>
+    </view>
+
+    <view class="section">
+      <view class="section-title">加入房间</view>
+      <input class="input" placeholder="输入6位房间码" value="{{roomCode}}" bindinput="onCodeInput" maxlength="6" />
+      <button class="btn-primary" bindtap="joinRoom">加入房间</button>
+    </view>
+  </block>
+
+  <!-- 在房间中 -->
+  <block wx:else>
+    <view class="room-info card">
+      <view class="room-code-label">房间码</view>
+      <view class="room-code" bindtap="copyRoomCode">{{currentRoom.roomCode}}</view>
+      <text class="copy-hint">点击复制</text>
+    </view>
+
+    <view class="player-list">
+      <view class="list-title">玩家列表 ({{currentRoom.players.length}}/4)</view>
+      <view class="player-item" wx:for="{{currentRoom.players}}" wx:key="seat">
+        <view class="seat-num">{{item.seat + 1}}号位</view>
+        <view class="player-name">{{item.name}}</view>
+        <view class="ready-status {{item.ready ? 'ready' : ''}}">
+          {{item.ready ? '已准备' : '等待中'}}
+        </view>
+      </view>
+    </view>
+
+    <view class="room-actions">
+      <button class="btn-primary" bindtap="startGame" wx:if="{{isHost && currentRoom.players.length === 4}}">
+        开始游戏
+      </button>
+      <button class="btn-secondary" bindtap="leaveRoom">离开房间</button>
+    </view>
+  </block>
+</view>
