@@ -1,0 +1,129 @@
+.container {
+  min-height: 100vh;
+  padding: 40rpx 32rpx;
+  background: linear-gradient(180deg, #0d2818, #1a3a1a);
+}
+
+.title {
+  font-size: 44rpx;
+  font-weight: bold;
+  color: #ffd54f;
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.section {
+  margin-bottom: 32rpx;
+}
+
+.section-title {
+  font-size: 28rpx;
+  color: #aaa;
+  margin-bottom: 16rpx;
+}
+
+.input {
+  background: rgba(255,255,255,0.08);
+  border-radius: 14rpx;
+  padding: 20rpx 24rpx;
+  color: #fff;
+  font-size: 28rpx;
+  margin-bottom: 16rpx;
+  border: 1rpx solid rgba(255,255,255,0.12);
+}
+
+.btn-primary {
+  width: 100%;
+  background: #2d8a4e;
+  color: #fff;
+  border-radius: 14rpx;
+  padding: 22rpx;
+  font-size: 30rpx;
+  border: none;
+}
+
+.divider {
+  text-align: center;
+  margin: 24rpx 0;
+  color: rgba(255,255,255,0.3);
+  font-size: 24rpx;
+}
+
+.room-info {
+  text-align: center;
+  margin-bottom: 32rpx;
+}
+
+.room-code-label {
+  font-size: 24rpx;
+  color: #888;
+}
+
+.room-code {
+  font-size: 60rpx;
+  font-weight: bold;
+  color: #ffd54f;
+  letter-spacing: 12rpx;
+  margin: 12rpx 0;
+}
+
+.copy-hint {
+  font-size: 22rpx;
+  color: rgba(255,255,255,0.3);
+}
+
+.player-list {
+  margin-bottom: 32rpx;
+}
+
+.list-title {
+  font-size: 28rpx;
+  color: #ccc;
+  margin-bottom: 16rpx;
+}
+
+.player-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  background: rgba(255,255,255,0.05);
+  border-radius: 12rpx;
+  margin-bottom: 8rpx;
+}
+
+.seat-num {
+  width: 80rpx;
+  font-size: 26rpx;
+  color: #aaa;
+}
+
+.player-name {
+  flex: 1;
+  font-size: 28rpx;
+  color: #e0e0e0;
+}
+
+.ready-status {
+  font-size: 24rpx;
+  color: #888;
+}
+
+.ready-status.ready {
+  color: #4caf50;
+}
+
+.room-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.btn-secondary {
+  width: 100%;
+  background: rgba(255,255,255,0.1);
+  color: #ccc;
+  border-radius: 14rpx;
+  padding: 22rpx;
+  font-size: 30rpx;
+  border: none;
+}
